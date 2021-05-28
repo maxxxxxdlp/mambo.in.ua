@@ -106,7 +106,7 @@ export default function Stopwatch(): JSX.Element {
   const [updateValue, setUpdateValue] = React.useState<boolean>(false);
 
   React.useEffect(() => {
-    if (state.type !== 'MainState') return;
+    if (state.type !== 'MainState') return undefined;
 
     const timeOut = setTimeout(() => {
       setUpdateValue(!updateValue);
@@ -135,7 +135,10 @@ export default function Stopwatch(): JSX.Element {
     >
       {(): JSX.Element => (
         <div className="w-screen h-screen bg-black flex flex-col">
-          <div className="flex-1 flex items-center justify-center text-9xl text-white">
+          <div
+            className="flex-1 flex items-center justify-center text-white"
+            style={{ fontSize: '16vw' }}
+          >
             {state.type === 'MainState'
               ? formatTime(Date.now() - state.beginTime, false)
               : formatTime(state.endTime - state.beginTime, true)}
